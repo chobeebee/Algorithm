@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb= new StringBuilder();
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         int num = Integer.parseInt(br.readLine());
 
@@ -15,13 +16,14 @@ public class Main {
 
             if (value == 0) {
                 if (minHeap.isEmpty()) {
-                    System.out.println("0");
+                    sb.append(0).append("\n");
                 }else{
-                    System.out.println(minHeap.poll());
+                    sb.append(minHeap.poll()).append("\n");
                 }
             }else{
                 minHeap.add(value);
             }
         }
+        System.out.println(sb);
     }
 }
