@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 import static java.lang.System.in;
 
 public class Main {
@@ -18,14 +16,14 @@ public class Main {
         }
 
         for(int i = 0; i < words.length-1; i++){
-            for(int j = 0; j < words.length; j++){
-                StringBuilder reverse = new StringBuilder(words[j]);
+            for (String word : words) {
+                StringBuilder reverse = new StringBuilder(word);
 
-                if(words[i].equals(reverse.reverse().toString())){
+                if (words[i].contentEquals(reverse.reverse())) {
                     int length = words[i].length();
-                    int idx = length/2;
+                    int idx = length / 2;
 
-                    System.out.println(length +" "+ words[i].charAt(idx));
+                    System.out.println(length + " " + words[i].charAt(idx));
                     return;
                 }
             }
