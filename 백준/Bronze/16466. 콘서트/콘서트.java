@@ -24,14 +24,16 @@ public class Main {
 
         Arrays.sort(sold);
 
-        int count = 1;
+        int count = 0;
         for(int i = 0; i < num; i++){
             if(sold[i] != i+1){
+                System.out.println(i+1);
+                count++;
                 break;
             }
-            count++;
         }
-
-        System.out.println(count);
+        if (count == 0) {
+            System.out.println(num+1);
+        }
     }
 }
