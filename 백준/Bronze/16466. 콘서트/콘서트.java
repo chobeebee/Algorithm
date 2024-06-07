@@ -14,26 +14,23 @@ public class Main {
 
         int num = Integer.parseInt(br.readLine());
         int[] sold = new int[num];
-        int max = 0;
 
         st = new StringTokenizer(br.readLine());
+
         for(int i = 0; i < num; i++){
-            sold[i] = Integer.parseInt(st.nextToken());
-            max = Math.max(max, sold[i]);
+            sold[i] = Integer.parseInt(st.nextToken()); //팔린 티켓
         }
 
         Arrays.sort(sold);
 
-        int count = 0;
+        int count = 1;
         for(int i = 0; i < num; i++){
             if(sold[i] != i+1){
-                System.out.println(i+1);
-                count++;
                 break;
             }
+            count++;
         }
-        if (count == 0) {
-            System.out.println(num+1);
-        }
+
+        System.out.println(count);
     }
 }
