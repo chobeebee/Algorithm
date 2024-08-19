@@ -5,28 +5,28 @@ import java.io.InputStreamReader;
 import static java.lang.System.in;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
-        int test = Integer.parseInt(br.readLine());
-        int[][] info = new int[15][15];
+        int T = Integer.parseInt(br.readLine());
 
-        for(int i = 0; i < 15; i++){
-            info[0][i] = i;
-            info[i][1] = 1;
+        int[][] arr = new int[15][15];
+
+        for (int i = 0; i < 15; i++) {
+            arr[0][i] = i;
+            arr[i][1] = 1;
         }
 
-        for(int i = 0; i < test; i++){
-            int floor = Integer.parseInt(br.readLine());
-            int room = Integer.parseInt(br.readLine());
-
-            for(int j = 1; j <= floor; j++){
-                for(int k = 1; k <= room; k++){
-                    info[j][k] = info[j][k-1] + info[j - 1][k];
-                }
+        for (int i = 1; i < 15; i++) {
+            for(int j=1; j <15; j++){
+                arr[i][j] = arr[i][j-1] + arr[i-1][j];
             }
-            System.out.println(info[floor][room]);
+        }
+
+        for(int i = 0; i < T; i++){
+            int K = Integer.parseInt(br.readLine());
+            int N = Integer.parseInt(br.readLine());
+            System.out.println(arr[K][N]);
         }
     }
 }
