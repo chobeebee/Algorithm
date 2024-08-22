@@ -6,13 +6,9 @@ import java.util.StringTokenizer;
 import static java.lang.System.in;
 
 public class Main {
-    public static int[] prime;
-    public static int N, M;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        StringBuilder sb = new StringBuilder();
         int M = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
 
@@ -20,7 +16,9 @@ public class Main {
     }
 
     public static void eratos(int M, int N) {
-        prime = new int[N + 1];
+        StringBuilder sb = new StringBuilder();
+        int[] prime = new int[N + 1];
+
         for (int i = 2; i <= N; i++) {
             prime[i] = i;
         }
@@ -35,10 +33,11 @@ public class Main {
             }
         }
 
-        for (int value : prime) {
-            if (value >= M) {
-                System.out.println(value);
+        for(int i = M; i <= N; i++){
+            if(prime[i] != 0){
+                sb.append(prime[i]).append("\n");
             }
         }
+        System.out.println(sb);
     }
 }
