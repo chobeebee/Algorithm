@@ -24,8 +24,8 @@ public class Main {
         int M = Integer.parseInt(st.nextToken()); //세로
         int B = Integer.parseInt(st.nextToken()); //블록 수
         int[][] map = new int[N][M]; //땅 지도
-        int max = Integer.MIN_VALUE; //최대 높이
-        int min = Integer.MAX_VALUE; //최소 높이
+        int max = 0; //최대 높이
+        int min = 255; //최소 높이
         int minTime = Integer.MAX_VALUE;
         int height = 0;
 
