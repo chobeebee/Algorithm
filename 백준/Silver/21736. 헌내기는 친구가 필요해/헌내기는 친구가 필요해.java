@@ -57,10 +57,6 @@ public class Main {
             int[] current = queue.poll();
             int x = current[0];
             int y = current[1];
-
-            if (campus[x][y].equals("P")) {
-                freind++;
-            }
             
             //사방 탐색
             for (int i = 0; i < dx.length; i++) {
@@ -69,11 +65,18 @@ public class Main {
                 
                 //캠퍼스 범위를 넘지 않고 방문하지 않은 위치일 때
                 if (newX < N && newY < M && newX >= 0 && newY >= 0 && !visited[newX][newY]) {
-                    if (campus[newX][newY].equals("X")) {
+                    //O면 빈 공간, P면 친구, X는 벽
+                    if(campus[newX][newY].equals("O")){
+                        visited[newX][newY] = true;
+                        queue.add(new int[]{newX, newY});
+                    } else if (campus[newX][newY].equals("P")) {
+                        visited[newX][newY] = true;
+                        queue.add(new int[]{newX, newY});
+                        freind++;
+                    } else{
+                        visited[newX][newY] = true;
                         continue;
                     }
-                    visited[newX][newY] = true;
-                    queue.add(new int[]{newX, newY});
                 }
             }
         }
