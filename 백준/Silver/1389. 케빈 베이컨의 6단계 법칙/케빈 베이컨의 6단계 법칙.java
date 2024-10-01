@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
     static int minCount = Integer.MAX_VALUE;
-    static int min = 0;
+    static int minUser = 0;
     public static void main(String[] args) throws IOException {
         /**
          * 최대 6단계 이내에 서로 아는 사람으로 연결 가능
@@ -42,8 +42,8 @@ public class Main {
             bfs(i, relation, visited);
         }
         
-        //케빈 베이컨의 최솟값 출력
-        System.out.println(min);
+        //가장 적은 케빈 베이컨 값을 가진 사람 출력
+        System.out.println(minUser);
     }
 
     private static void bfs(int i, Map<Integer, List<Integer>> relation, boolean[] visited) {
@@ -55,7 +55,7 @@ public class Main {
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
             int root = current[1];
-            count += root; //관계++
+            count += root; //관계 수 합치기
             List<Integer> users = relation.get(current[0]);
 
             //해당 유저에 대한 관계
@@ -67,11 +67,13 @@ public class Main {
             }
         }
         
+        //케빈 베이컨 수가 현재 유저가 작다면
         if (minCount > count) {
-            minCount = count;
-            min = i;
+            minCount = count; //최소 값
+            minUser = i; //최소 값을 가진 현재 유저
         }else{
-            min = Math.min(i, min);
+            //케빈 베이컨 수가 같다면 작은 번호를 가진 사람 넣기
+            minUser = Math.min(i, minUser);
         }
     }
 }
