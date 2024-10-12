@@ -10,13 +10,8 @@ public class Main {
          * 2^N*2^N 2차원 배열을 Z모양으로 탐색 : 왼쪾 위 > 오른쪽 위 > 왼쪽 아래 > 오른쪽 아래
          * N>1인 경우, 4등분 하여 재귀적으로 순서대로 방문
          * r행 c열을 몇 번째 방문하는 지 출력
-         *
-         * [0,0],[0,1],[1,0],[1,1]
-         * [0,2],[0,3],[1,2],[1,3]
-         * [2,0],[2,1],[3,0],[3,1]
-         * [2,2],[2,3],[3,2],[3,3]
-         *
-         * x+1,x-1 y+1,x+1
+         * 
+         * r,c가 어느 위치에 있는지 중요
          */
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
