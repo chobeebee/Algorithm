@@ -10,9 +10,7 @@ public class Main {
     static int[] dx={-1,1,0,0,0,0};
     static int[] dy={0,0,-1,1,0,0};
     static int[] dz={0,0,0,0,-1,1};
-    static int M;
-    static int N;
-    static int H;
+    static int M,N,H;
     static int[][][] box;
     static Queue<Tomato> queue;
 
@@ -30,9 +28,6 @@ public class Main {
          * 상자 크기 MxN, 상자 수 H
          * 익은 토마토 1, 익지 않은 토마토 0, 들어있지 않음 -1
          * 저장될 떄 부터 모두 익어있는 상태면 0을 출력, 모두 익지 못하는 상황이면 -1출력
-         *
-         * bfs..?
-         * 상자 마다 bfs를 돌려야..?
          */
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,13 +45,14 @@ public class Main {
                 st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < M; j++) {
                     box[k][i][j] = Integer.parseInt(st.nextToken());
+                    //익은 토마토일 경우 queue에 좌표 넣기
                     if (box[k][i][j] == 1) {
                         queue.add(new Tomato(i, j, k));
                     }
                 }
             }
         }
-
+        
         System.out.println(bfs());
 
     }
@@ -64,13 +60,14 @@ public class Main {
     private static int bfs() {
 
         while (!queue.isEmpty()) {
+            //큐에서 좌표를 꺼냄
             Tomato tomato = queue.poll();
 
             int curX = tomato.x;
             int curY = tomato.y;
             int curZ = tomato.z;
 
-            //상하 좌우 위아래
+            //상하 좌우 위아래 탐색
             for (int i = 0; i < 6; i++) {
                 int newX = curX + dx[i];
                 int newY = curY + dy[i];
@@ -87,12 +84,12 @@ public class Main {
             }
         }
 
-        int date = Integer.MIN_VALUE; //최대 날짜 찾기 위해
+        int date = Integer.MIN_VALUE; //최대 날짜 찾기 위한 변수
 
         for (int k = 0; k < H; k++) {
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < M; j++) {
-                    //익지 않은 토마토인 경우
+                    //익지 않은 토마토가 있을 경우
                     if (box[k][i][j] == 0) {
                         return -1;
                     }
@@ -103,19 +100,17 @@ public class Main {
             }
         }
 
-        //토마토가 모두 익었을 경우
+        //토마토가 모두 익었을 경우(저장될 때 부터 모두 익어있는 상태) 0리턴
         if (date == 1) {
             return 0;
         }else{
+            //처음 익은 토마토 값이 1이었어서 날짜-1
             return date - 1;
         }
-
     }
 
     public static class Tomato{
-        int x;
-        int y;
-        int z;
+        int x, y, z;
 
         public Tomato(int x, int y, int z) {
             this.x = x;
