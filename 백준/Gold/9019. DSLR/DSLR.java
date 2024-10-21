@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
         int T = Integer.parseInt(br.readLine()); //테스트 케이스
@@ -58,8 +59,8 @@ public class Main {
                     result[R]=result[now] + "R";
                 }
             }
-
-            System.out.println(result[B]);
+            sb.append(result[B] + "\n");
         }
+        System.out.println(sb);
     }
 }
