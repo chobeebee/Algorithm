@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static long max = 0;
+    static int max = 0;
     static int N;
     static int K;
     static String[] arr;
@@ -31,7 +31,6 @@ public class Main {
          */
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken()); //자연수
@@ -45,12 +44,12 @@ public class Main {
         System.out.println(max);
     }
 
-    private static void recur(long depth, String seq) {
-        //원소 조합 후, N보다 작다면 max와 비교해서 저장하고 크다면 재귀 return
+    private static void recur(int depth, String seq) {
+
         if (depth > 0) {
-            if(Long.parseLong(seq) <= N){
-                max = Math.max(max, Long.parseLong(seq));
-            }else if(Long.parseLong(seq) > N){
+            if(Integer.parseInt(seq) <= N){
+                max = Math.max(max, Integer.parseInt(seq));
+            }else if(Integer.parseInt(seq) > N){
                 return;
             }
         }
