@@ -5,8 +5,7 @@ import java.util.*;
 
 public class Main {
     static int N, M,one, two;
-    static int[] dist;
-    static boolean[] visited;
+    static int[] visited;
 
     public static void main(String[] args) throws IOException {
         /**
@@ -28,8 +27,7 @@ public class Main {
 
         M = Integer.parseInt(br.readLine()); //관계 개수
         Map<Integer, List<Integer>> map = new HashMap<>(); //관계
-        dist = new int[N+1];
-        visited = new boolean[N+1];
+        visited = new int[N+1]; //각 부모의 방문 촌수
 
         //맵 초기화
         for (int i = 1; i <= N; i++) {
@@ -44,28 +42,31 @@ public class Main {
             map.get(x).add(y);
             map.get(y).add(x);
         }
+        
+        //dfs로 촌수 탐색
+        dfs(map);
 
-        System.out.println(dfs(map));
+        //찾으려는 두번째 사람의 촌수가 0보다 크면 촌수 출력, 아니면 -1
+        System.out.println(visited[two] > 0 ? visited[two] : -1);
     }
 
-    private static int dfs(Map<Integer, List<Integer>> map) {
+    private static void dfs(Map<Integer, List<Integer>> map) {
         Queue<Integer> queue = new LinkedList<>();
-        dist[one] = 0;
-        visited[one] = true;
-        queue.offer(one);
+        queue.add(one); //큐에 찾으려는 첫번째 사람 넣기
+
         while (!queue.isEmpty()) {
-            int cur = queue.poll();
-            for (int i = 0; i < map.get(cur).size(); i++) {
-                if (!visited[map.get(cur).get(i)]) {
-                    dist[map.get(cur).get(i)] = dist[cur] + 1;
-                    if (map.get(cur).get(i) == two) {
-                        return dist[map.get(cur).get(i)];
-                    }
-                    queue.offer(map.get(cur).get(i));
-                    visited[map.get(cur).get(i)] = true;
+            int current = queue.poll(); //큐에 있는 값 꺼내기
+
+            if(current == two) return; //꺼낸 값이 두번째 사람이면 리턴
+
+            //큐에서 꺼낸 값과 연관된 사람들 만큼 반복
+            for (int m : map.get(current)) {
+                //아직 탐색되지 않은 사람이면 현재 사람과 관계가 있으니 촌수+1
+                if (visited[m] == 0) {
+                    visited[m] = visited[current]+1;
+                    queue.add(m); //큐에 넣기
                 }
             }
         }
-        return -1;
     }
 }
