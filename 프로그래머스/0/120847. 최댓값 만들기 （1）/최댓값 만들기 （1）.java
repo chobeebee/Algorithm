@@ -1,13 +1,12 @@
-import java.util.*;
-
 class Solution {
     public int solution(int[] numbers) {
         int answer = 0;
-        int endIdx = numbers.length -1;
         
-        Arrays.sort(numbers);
-        
-        answer += numbers[endIdx-1]*numbers[endIdx];
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                answer = Math.max(answer, numbers[i] * numbers[j]);
+            }
+        }
         
         return answer;
     }
