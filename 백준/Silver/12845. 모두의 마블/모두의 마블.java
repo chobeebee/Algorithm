@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,31 +18,30 @@ public class Main {
          * 영합이가 최대로 골드를 받으려면?
          *
          * 두 카드를 합성 : 큰 레벨이 레벨이 되고 골드는 두 레벨 합친 수
+         *
+         * 오름차순으로 해서 합해가면 될 것 같다!
          * */
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int N = Integer.parseInt(br.readLine()); //카드 개수
-        PriorityQueue<Integer> cards = new PriorityQueue<>(Collections.reverseOrder());//카드 레벨
-        long gold = 0; //골드 값
+        Integer[] cards = new Integer[N]; //카드 레벨
+        int sum = 0; //골드 수
 
         //카드 레벨 입력
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            cards.add(Integer.parseInt(st.nextToken()));
+            cards[i] = Integer.parseInt(st.nextToken());
         }
+
+        //래밸 내림차순 정렬
+        Arrays.sort(cards, Collections.reverseOrder());
 
         //두 카드 합성
-        while (cards.size() > 1) {
-            int A = cards.poll();
-            int B = cards.poll();
-            int max = Math.max(A,B); //A, B 카드 중 높은 레벨
-
-            gold += max + B; //합성 레벨
-
-            cards.add(max); //높은 레벨 큐에 담기
+        sum = cards[0] * (N - 1);
+        for (int i = 1; i < N; i++) {
+            sum += cards[i];
         }
-        
 
-        System.out.println(gold);
+        System.out.println(sum);
     }
 }
