@@ -19,9 +19,9 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int N = Integer.parseInt(br.readLine()); //도시 개수
-        int[] distance = new int[N - 1]; //도로 길이
-        int[] price = new int[N]; //기름 가격
-        int total = 0; //총 가격
+        long[] distance = new long[N - 1]; //도로 길이
+        long[] price = new long[N]; //기름 가격
+        long total = 0; //총 가격
 
         //거리 입력
         st = new StringTokenizer(br.readLine());
@@ -35,7 +35,7 @@ public class Main {
             price[i] = Integer.parseInt(st.nextToken());
         }
 
-        int minPrice = price[0]; //출발 장소 가격을 기준
+        long minPrice = price[0]; //출발 장소 가격을 기준
 
         for (int i = 0; i < N - 1; i++) {
             //가격이 더 저렴하면 주유
