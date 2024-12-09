@@ -19,7 +19,7 @@ public class Main {
 
         N = Integer.parseInt(st.nextToken()); //자연수 개수
         M = Integer.parseInt(st.nextToken()); //수열 길이
-        arr = new int[N];
+        arr = new int[M];
 
         recur(0);
         System.out.println(sb);
