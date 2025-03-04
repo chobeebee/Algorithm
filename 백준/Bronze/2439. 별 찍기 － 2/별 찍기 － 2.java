@@ -26,17 +26,11 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
 
         //별 찍기
-        for (int i = 0; i < N; i++) {
-            //공백
-            for (int j = 0; j < N-i-1; j++) {
-                sb.append(" ");
-            }
-            //별
-            for (int j = 0; j <= i; j++) {
-                sb.append("*");
-            }
-            sb.append("\n");
-        }
+        for (int i = 1; i <= N; i++) {
+            sb.append(" ".repeat(N - i))
+                    .append("*".repeat(i))
+                    .append("\n");
+        };
 
         System.out.println(sb);
     }
