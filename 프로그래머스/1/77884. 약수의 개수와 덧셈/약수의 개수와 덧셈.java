@@ -3,25 +3,13 @@ class Solution {
         int answer = 0;
         
         for(int i=left; i<=right; i++){
-            int count = yagsu(i);
-            
-            if(count % 2 == 0){
-                answer+= i;
-            }else{
-                answer-= i;
+            if (Math.sqrt(i) == (int)Math.sqrt(i)) {
+                answer -= i;
+            } else {
+                answer += i;
             }
         }
         
         return answer;
-    }
-    
-    public int yagsu(int num){
-        int count = 0;
-        
-        for(int i=1; i<=num; i++){
-            if(num % i == 0) count++;
-        }
-        
-        return count;
     }
 }
