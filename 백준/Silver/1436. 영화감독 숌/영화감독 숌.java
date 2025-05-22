@@ -17,15 +17,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        int count = 0; // 순서
+        int count = 1; // 순서
         int num = 666; // 첫번째 제목 666부터 시작
 
         while (true){
-            // 666이 들어가 있으면 순서 증가
-            if(String.valueOf(num).contains("666")){
-                count++;
-            }
-
             // N번째가 되면 순서를 출력
             if(count == N) {
                 System.out.println(num);
@@ -33,6 +28,11 @@ public class Main {
             }
             
             num++; // 숫자 증가
+
+            // 666이 들어가 있으면 순서 증가
+            if(String.valueOf(num).contains("666")){
+                count++;
+            }
         }
     }
 }
