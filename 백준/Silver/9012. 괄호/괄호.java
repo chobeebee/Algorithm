@@ -24,6 +24,7 @@ public class Main {
         for (int i = 0; i < T; i++) {
             Stack<Character> stack = new Stack<>();
             String word = br.readLine();
+            boolean vpsCheck = true; // vps인지 체크
 
             // 문자열 탐색
             for (int j = 0; j < word.length(); j++) {
@@ -35,7 +36,7 @@ public class Main {
                 }else {
                     // stack이 비었는데 ')'차례면 탐색 종료
                     if(stack.isEmpty()) {
-                        stack.push(ch);
+                        vpsCheck = false; //vps아님
                         break;
                     }
                     // 아니면 '(' 꺼내기
@@ -43,8 +44,8 @@ public class Main {
                 }
             }
 
-            // stack 크기에 따라 결과 출력
-            if(stack.isEmpty()){
+            // 결과 출력
+            if(vpsCheck && stack.isEmpty()){
                 System.out.println("YES");
             }else{
                 System.out.println("NO");
