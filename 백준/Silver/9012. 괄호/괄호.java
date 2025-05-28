@@ -22,25 +22,27 @@ public class Main {
 
         // 테스트 수 만큼 반복
         for (int i = 0; i < T; i++) {
-            Stack<String> stack = new Stack<>();
-            String[] arr = br.readLine().split(""); // 입력된 문자열을 배열로
-            
-            // 배열 탐색
-            for (int j = 0; j < arr.length; j++) {
+            Stack<Character> stack = new Stack<>();
+            String word = br.readLine();
+
+            // 문자열 탐색
+            for (int j = 0; j < word.length(); j++) {
+                char ch = word.charAt(j); // 현 위치 글자
+
                 // '('이면 stack에 넣기
-                if (arr[j].equals("(")) {
-                    stack.push(arr[j]);
+                if (ch == '(') {
+                    stack.push(ch);
                 }else {
                     // stack이 비었는데 ')'차례면 탐색 종료
                     if(stack.isEmpty()) {
-                        stack.push(")");
+                        stack.push(ch);
                         break;
                     }
                     // 아니면 '(' 꺼내기
                     stack.pop();
                 }
             }
-            
+
             // stack 크기에 따라 결과 출력
             if(stack.isEmpty()){
                 System.out.println("YES");
