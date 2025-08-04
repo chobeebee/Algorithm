@@ -8,7 +8,7 @@ class Solution {
         int total = brown + yellow; // 전체 카펫 수
         
         // 가로, 세로가 3이상이어야 함
-        for(int height=3; height<=total; height++) {
+        for(int height=3; height<=Math.sqrt(total); height++) {
             // 가로 길이가 딱 떨어지지 않으면 넘김
             if(total % height != 0 ) continue;
             int width = total / height; // 가로
